@@ -1,5 +1,5 @@
 # Custom-Toast
-I couldn't find any solution to positioning a Toast message or none of the listing in the internet work for me, so I create this.
+I couldn't find any solution to positioning a Toast message or none of the listing in the internet work for me, so I created this.
 
 The "Toat" itself is fully customizable.
 
