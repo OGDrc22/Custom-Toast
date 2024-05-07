@@ -1,5 +1,5 @@
 # Fully Custom-Toast with custom postion
-I couldn't find any solution to positioning a Toast message or none of the listing in the internet work for me, so I created this.
+I couldn't find any solution to positioning a Toast message or none of the listing in the internet work for me,Like setting a gravit "Gravity.TOP" it didn't work and idk why. so I created this.
 
 The "Toat" itself is fully customizable.
 
