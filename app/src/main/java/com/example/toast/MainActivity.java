@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button, button2;
+    private Button button, buttonWithOnclick, button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +30,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ToastMethod toastMethod = new ToastMethod(MainActivity.this);
-                toastMethod.showNotification("Custom Toast", R.drawable.ic_launcher_foreground);
+                toastMethod.showNotification("Custom Toast", R.drawable.ic_launcher_foreground, null, 3000);
             }
         });
+
+        buttonWithOnclick = findViewById(R.id.buttonWithOnClick);
+        buttonWithOnclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastMethod toastMethod = new ToastMethod(MainActivity.this);
+                toastMethod.showNotification("Click here", R.drawable.baseline_account_circle_24, YourSecondAActivity.class, 6000 );
+            }
+        });
+
         button2 = findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override

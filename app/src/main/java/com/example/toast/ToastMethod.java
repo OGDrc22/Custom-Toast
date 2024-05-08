@@ -1,6 +1,9 @@
 package com.example.toast;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 
 import android.os.Handler;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
@@ -18,6 +22,7 @@ public class ToastMethod {
     private ViewGroup rootView;
     private View notificationLayout;
 
+    private CardView cardView;
     private TextView textView;
     private ImageView imageView;
 
@@ -26,9 +31,20 @@ public class ToastMethod {
         this.rootView = activity.findViewById(R.id.main);
     }
 
-    public void showNotification(String message, int imgResID) {
+    public void showNotification(String message, int imgResID, Class<?> toActivity, int duration) {
         LayoutInflater inflater = activity.getLayoutInflater();
         notificationLayout = inflater.inflate(R.layout.in_app_notification, null);
+
+        cardView = notificationLayout.findViewById(R.id.cardView);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (toActivity != null) {
+                    Intent intent = new Intent(activity, toActivity);
+                    activity.startActivity(intent);
+                }
+            }
+        });
 
         textView = notificationLayout.findViewById(R.id.notificationTextView);
         textView.setText(message);
@@ -55,7 +71,7 @@ public class ToastMethod {
 
         constraintSet.applyTo((ConstraintLayout) rootView);
 
-        new Handler().postDelayed(() -> rootView.removeView(notificationLayout), 6000);
+        new Handler().postDelayed(() -> rootView.removeView(notificationLayout), duration);
     }
 
     public void hideNotification() {
