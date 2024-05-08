@@ -20,7 +20,7 @@ public class ToastMethod {
 
     private Activity activity;
     private ViewGroup rootView;
-    private View notificationLayout;
+    private View layoutNotification;
 
     private CardView cardView;
     private TextView textView;
@@ -31,11 +31,11 @@ public class ToastMethod {
         this.rootView = activity.findViewById(R.id.main);
     }
 
-    public void showNotification(String message, int imgResID, Class<?> toActivity, Integer duration) {
+    public void showNotification(int notificationLayout, String message, int imgResID, Class<?> toActivity, Integer duration_default_3000_3s) {
         LayoutInflater inflater = activity.getLayoutInflater();
-        notificationLayout = inflater.inflate(R.layout.in_app_notification, null);
+        layoutNotification = inflater.inflate(notificationLayout, rootView,false);
 
-        cardView = notificationLayout.findViewById(R.id.cardView);
+        cardView = layoutNotification.findViewById(R.id.cardView);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,10 +46,10 @@ public class ToastMethod {
             }
         });
 
-        textView = notificationLayout.findViewById(R.id.notificationTextView);
+        textView = layoutNotification.findViewById(R.id.notificationTextView);
         textView.setText(message);
 
-        imageView = notificationLayout.findViewById(R.id.imageView);
+        imageView = layoutNotification.findViewById(R.id.imageView);
         imageView.setImageResource(imgResID);
 
         // Setting Position
@@ -58,31 +58,25 @@ public class ToastMethod {
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
         );
 
-        notificationLayout.setLayoutParams(params);
+        layoutNotification.setLayoutParams(params);
 
-        rootView.addView(notificationLayout);
+        rootView.addView(layoutNotification);
 
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone((ConstraintLayout) rootView);
 
-        constraintSet.connect(notificationLayout.getId(), ConstraintSet.TOP, rootView.getId(), ConstraintSet.TOP, 4);
-        constraintSet.connect(notificationLayout.getId(), ConstraintSet.LEFT, rootView.getId(), ConstraintSet.LEFT, 0);
-        constraintSet.connect(notificationLayout.getId(), ConstraintSet.RIGHT, rootView.getId(), ConstraintSet.RIGHT, 0);
+        constraintSet.connect(layoutNotification.getId(), ConstraintSet.TOP, rootView.getId(), ConstraintSet.TOP, 4);
+        constraintSet.connect(layoutNotification.getId(), ConstraintSet.LEFT, rootView.getId(), ConstraintSet.LEFT, 0);
+        constraintSet.connect(layoutNotification.getId(), ConstraintSet.RIGHT, rootView.getId(), ConstraintSet.RIGHT, 0);
 
         constraintSet.applyTo((ConstraintLayout) rootView);
 
-        int delay = (duration != null) ? duration : 3000;
-        new Handler().postDelayed(() -> rootView.removeView(notificationLayout), delay);
+        int delay = (duration_default_3000_3s != null) ? duration_default_3000_3s : 3000;
+        new Handler().postDelayed(() -> rootView.removeView(layoutNotification), delay);
     }
 
     public void hideNotification() {
-        rootView.removeView(notificationLayout);
-    }
-
-    public void updateImageResource(int newImageResId) {
-        if (imageView != null) {
-            imageView.setImageResource(newImageResId);
-        }
+        rootView.removeView(layoutNotification);
     }
 }
 

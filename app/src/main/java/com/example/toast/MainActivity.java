@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ToastMethod toastMethod = new ToastMethod(MainActivity.this);
-                toastMethod.showNotification("Custom Toast", R.drawable.ic_launcher_foreground, null, null);
+                toastMethod.showNotification(R.layout.in_app_notification, "Custom Toast", R.drawable.ic_launcher_foreground, null, null);
             }
         });
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ToastMethod toastMethod = new ToastMethod(MainActivity.this);
-                toastMethod.showNotification("Click here", R.drawable.baseline_account_circle_24, YourSecondAActivity.class, 6000 );
+                toastMethod.showNotification(R.layout.in_app_notification, "Click here", R.drawable.baseline_account_circle_24, YourSecondActivity.class, 6000 );
             }
         });
 
