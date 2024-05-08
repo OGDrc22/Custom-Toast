@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ToastMethod toastMethod = new ToastMethod(MainActivity.this);
-                toastMethod.showNotification("Custom Toast", R.drawable.ic_launcher_foreground, null, 3000);
+                toastMethod.showNotification("Custom Toast", R.drawable.ic_launcher_foreground, null, null);
             }
         });
 

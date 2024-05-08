@@ -31,7 +31,7 @@ public class ToastMethod {
         this.rootView = activity.findViewById(R.id.main);
     }
 
-    public void showNotification(String message, int imgResID, Class<?> toActivity, int duration) {
+    public void showNotification(String message, int imgResID, Class<?> toActivity, Integer duration) {
         LayoutInflater inflater = activity.getLayoutInflater();
         notificationLayout = inflater.inflate(R.layout.in_app_notification, null);
 
@@ -65,13 +65,14 @@ public class ToastMethod {
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone((ConstraintLayout) rootView);
 
-        constraintSet.connect(notificationLayout.getId(), ConstraintSet.TOP, rootView.getId(), ConstraintSet.TOP, 0);
+        constraintSet.connect(notificationLayout.getId(), ConstraintSet.TOP, rootView.getId(), ConstraintSet.TOP, 4);
         constraintSet.connect(notificationLayout.getId(), ConstraintSet.LEFT, rootView.getId(), ConstraintSet.LEFT, 0);
         constraintSet.connect(notificationLayout.getId(), ConstraintSet.RIGHT, rootView.getId(), ConstraintSet.RIGHT, 0);
 
         constraintSet.applyTo((ConstraintLayout) rootView);
 
-        new Handler().postDelayed(() -> rootView.removeView(notificationLayout), duration);
+        int delay = (duration != null) ? duration : 3000;
+        new Handler().postDelayed(() -> rootView.removeView(notificationLayout), delay);
     }
 
     public void hideNotification() {
