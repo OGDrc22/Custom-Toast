@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastMethod toastMethod = new ToastMethod(MainActivity.this);
-                toastMethod.showNotification(R.layout.in_app_notification, "Custom Toast", R.drawable.ic_launcher_foreground, null, null);
+                CustomToastMethod toastMethod = new CustomToastMethod(MainActivity.this);
+                toastMethod.showNotification(R.layout.in_app_notification, "Custom Toast", null, R.drawable.ic_launcher_foreground, null, 10000);
             }
         });
 
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         buttonWithOnclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastMethod toastMethod = new ToastMethod(MainActivity.this);
-                toastMethod.showNotification(R.layout.in_app_notification, "Click here", R.drawable.baseline_account_circle_24, YourSecondActivity.class, 6000 );
+                CustomToastMethod toastMethod = new CustomToastMethod(MainActivity.this);
+                toastMethod.showNotification(R.layout.in_app_notification_2, "Click Me", "To open 2nd Activity", R.drawable.baseline_account_circle_24, YourSecondActivity.class, 6000);
             }
         });
 
